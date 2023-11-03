@@ -1,13 +1,13 @@
 ﻿using System;
 
 // Сравнение объектов
-interface IComparable
+interface Compar
 {
-    int CompareTo(object obj);
+    int ComparTo(object obj);
 }
 
-// Класс, реализующий интерфейс IComparable
-class Cars : IComparable
+// Класс, реализующий интерфейс Compar
+class Cars : Compar
 {
     public string Car;
     public int HS;
@@ -18,8 +18,8 @@ class Cars : IComparable
         HS = hs;
     }
 
-    // Реализуем метод CompareTo интерфейса IComparable
-    public int CompareTo(object obj)
+    // Реализуем метод ComparTo интерфейса Compar
+    public int ComparTo(object obj)
     {
         if (obj == null) return 1;
 
@@ -27,7 +27,7 @@ class Cars : IComparable
         if (anotherCar != null)
         {
             // Сравниваем объекты по лошадиным силам
-            return HS.CompareTo(anotherCar.HS);
+            return HS.Compar(anotherCar.HS);
         }
         else
         {
