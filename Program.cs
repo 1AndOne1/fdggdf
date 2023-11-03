@@ -1,12 +1,9 @@
-﻿using System;
-
 // Сравнение объектов
 interface Compar
 {
     int ComparTo(object obj);
 }
 
-// Класс, реализующий интерфейс Compar
 class Cars : Compar
 {
     public string Car;
@@ -17,17 +14,13 @@ class Cars : Compar
         Car = car;
         HS = hs;
     }
-
-    // Реализуем метод ComparTo интерфейса Compar
     public int ComparTo(object obj)
     {
-        if (obj == null) return 1;
+        if (obj == null) return 0;
 
-        Cars anotherCar = obj as Cars;
-        if (anotherCar != null)
+        if (obj is Cars anotherCar)
         {
-            // Сравниваем объекты по лошадиным силам
-            return HS.Compar(anotherCar.HS);
+            return HS.CompareTo(anotherCar.HS);
         }
         else
         {
@@ -55,6 +48,15 @@ class Program
         Cars cars1 = new Cars(car1, hs1);
         Cars cars2 = new Cars(car2, hs2);
         Console.WriteLine($"{cars1.Car} // {cars2.Car}");
-        Console.WriteLine($"{cars1.HS}hs и {cars2.HS}hs");
+        int sravnenie = car1.CompareTo(car2);
+        if (sravnenie < 0) {
+            Console.WriteLine($"{cars1.HS} менее мощная чем {cars2.HS}");
+        }
+        else if (sravnenie > 0) {
+            Console.WriteLine($"{cars1.HS} мощнее чем {cars2.HS}");
+        }
+        else {
+            Console.WriteLine($"У {cars1.Car} и {cars2.Car} мощность одинаковая {cars1.HS}");
+        }
     }
 }
